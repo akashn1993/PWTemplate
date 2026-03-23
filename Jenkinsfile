@@ -20,15 +20,22 @@ pipeline {
                 '''
             }
         }
+
+		stage('Manual Clone') {
+    steps {
+        sh '''
+            git clone https://github.com/your-username/your-repo.git
+        '''
+    }
        
 
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/akashn1993/PWTemplate.git',
-                    credentialsId: 'github-credentials'
-            }
-        }
+        // stage('Checkout Code') {
+        //     steps {
+        //         git branch: 'main',
+        //             url: 'https://github.com/akashn1993/PWTemplate.git',
+        //             credentialsId: 'github-credentials'
+        //     }
+        // }
 
        stage('Validate') {
             steps {
