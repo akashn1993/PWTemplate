@@ -7,22 +7,11 @@ pipeline {
 	}
 	
     stages {
-		stage{
+		stage('cleanup'){
 			steps{
 				cleanWs()
 			}
 		}
-
-		// stage('Check Tools') {
-  //           steps {
-  //               sh '''
-  //                   node -v
-  //                   npm -v
-  //                   git --version
-  //               '''
-  //           }
-  //       }
-       
 
         stage('Checkout Code') {
             steps {
@@ -31,14 +20,6 @@ pipeline {
                     credentialsId: 'github-credentials'
             }
         }
-
-  //      stage('Validate') {
-  //           steps {
-  //               script {
-  //                   sh 'ls -la'
-  //               }
-  //           }
-		// }
 
         stage('Install Dependencies') {
             steps {
