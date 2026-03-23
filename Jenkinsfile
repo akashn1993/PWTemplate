@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.42.0-jammy'
+        }
+    }
 
     tools {
         nodejs 'NodeJS_18'   // Configure this in Jenkins → Global Tool Configuration
@@ -22,8 +26,11 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    npm ci
+                    node -v
+                    npm -v
+                    npm install
                     npx playwright install
+                    npx playwright test
                 '''
             }
         }
