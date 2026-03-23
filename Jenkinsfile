@@ -1,8 +1,4 @@
 pipeline {
-
-    tools {
-        git 'Default'
-    }
 	
     stages {
 
