@@ -33,6 +33,7 @@ pipeline {
                     sh 'ls -la'
                 }
             }
+		}
 
         stage('Install Dependencies') {
             steps {
@@ -58,7 +59,8 @@ pipeline {
                 archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
             }
         }
-    }
+	}
+    
 
     post {
         always {
