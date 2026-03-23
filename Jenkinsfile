@@ -10,14 +10,20 @@ pipeline {
     }
 	
     stages {
+
+		stage('Check Tools') {
+            steps {
+                sh '''
+                    node -v
+                    npm -v
+                    git --version
+                '''
+            }
+        }
        
 
         stage('Checkout Code') {
             steps {
-				node -v
-                npm -v
-				git --version
-               git scm
                 git branch: 'main',
                     url: 'https://github.com/akashn1993/PWTemplate.git',
                     credentialsId: 'github-credentials'
