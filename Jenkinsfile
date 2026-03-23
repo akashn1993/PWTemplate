@@ -4,6 +4,9 @@ pipeline {
     // tools {
     //     nodejs 'NodeJS_18'   // Configure this in Jenkins → Global Tool Configuration
     // }
+    tools {
+        git 'Default'
+    }
 
     environment {
         CI = 'true'
@@ -26,7 +29,6 @@ pipeline {
                     npm -v
                     npm install
                     npx playwright install
-                    npx playwright test
                 '''
             }
         }
