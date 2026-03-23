@@ -4,6 +4,7 @@ pipeline {
 
 	tools{
 		nodejs 'NodeJS'
+		git 'Git'
 	}
 	
     stages {
