@@ -1,35 +1,38 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Check Git') {
-    steps {
-        sh 'git --version'
-        }
+    tools {
+        nodejs 'NodeJS_18'   // Configure this in Jenkins → Global Tool Configuration
     }
+
+    environment {
+        CI = 'true'
+    }
+
+    stages {
 
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/your-org/your-repo.git'
+                    url: 'https://github.com/akashn1993/PWTemplate.git',
+                    credentialsId: 'github-credentials'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Install Playwright Browsers') {
-            steps {
-                sh 'npx playwright install'
+                sh '''
+                    npm ci
+                    npx playwright install
+                '''
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test'
+                sh '''
+                    npx playwright test
+                '''
             }
         }
 
@@ -38,6 +41,17 @@ pipeline {
                 archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
             }
         }
+    }
 
+    post {
+        always {
+            echo 'Pipeline completed'
+        }
+        success {
+            echo 'Tests Passed ✅'
+        }
+        failure {
+            echo 'Tests Failed ❌'
+        }
     }
 }
