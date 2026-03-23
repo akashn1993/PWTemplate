@@ -14,6 +14,9 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
+				node -v
+                npm -v
+				git --version
                git scm
                 git branch: 'main',
                     url: 'https://github.com/akashn1993/PWTemplate.git',
@@ -32,8 +35,6 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    node -v
-                    npm -v
                     npm install
                     npx playwright install
                 '''
