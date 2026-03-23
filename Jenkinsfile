@@ -8,13 +8,7 @@ pipeline {
     tools {
         git 'Default'
     }
-
-    environment {
-        CI = 'true'
-    }
-
-   
-
+	
     stages {
        
 
