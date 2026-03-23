@@ -1,9 +1,11 @@
 pipeline {
     agent any
 
-    // tools {
-    //     nodejs 'NodeJS_18'   // Configure this in Jenkins → Global Tool Configuration
-    // }
+   agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.42.0-jammy'
+        }
+    }
     tools {
         git 'Default'
     }
