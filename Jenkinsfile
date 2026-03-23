@@ -14,6 +14,17 @@ pipeline {
 			}
 		}
 
+		stage('Debug Git') {
+    steps {
+        sh '''
+            whoami
+            echo $PATH
+            which git
+            git --version
+        '''
+    }
+}
+
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
