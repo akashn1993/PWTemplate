@@ -13,7 +13,15 @@ pipeline {
         CI = 'true'
     }
 
+   
+
     stages {
+       stage('Validate') {
+            steps {
+                script {
+                    sh 'ls -la'
+                }
+            }
 
         stage('Checkout Code') {
             steps {
