@@ -1,4 +1,6 @@
 pipeline {
+
+	agent any
 	
     stages {
 
@@ -15,7 +17,7 @@ pipeline {
 		stage('Manual Clone') {
     steps {
         sh '''
-            git clone https://github.com/your-username/your-repo.git
+            git clone https://github.com/akashn1993/PWTemplate.git
         '''
     }
 		}
