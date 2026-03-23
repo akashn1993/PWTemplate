@@ -17,6 +17,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
+               git scm
                 git branch: 'main',
                     url: 'https://github.com/akashn1993/PWTemplate.git',
                     credentialsId: 'github-credentials'
