@@ -16,12 +16,7 @@ pipeline {
    
 
     stages {
-       stage('Validate') {
-            steps {
-                script {
-                    sh 'ls -la'
-                }
-            }
+       
 
         stage('Checkout Code') {
             steps {
@@ -31,6 +26,13 @@ pipeline {
                     credentialsId: 'github-credentials'
             }
         }
+
+       stage('Validate') {
+            steps {
+                script {
+                    sh 'ls -la'
+                }
+            }
 
         stage('Install Dependencies') {
             steps {
